@@ -2,31 +2,26 @@
     {
         "00:13:A2:00:41:54:B4:EE":
         {
-            "last":"",
             "name":"Coopeumo - 1",
             "params":["Temperatura","Humedad","CO2"]
         },
         "00:13:A2:00:41:9B:43:E4":
         {
-            "last":"",
             "name":"Coopeumo - 2",
             "params":["Temperatura","Humedad","CO2"]
         },
         "00:13:A2:00:41:54:B4:F0":
         {
-            "last":"",
             "name":"Coopeumo - 3",
             "params":["Temperatura","Humedad","CO2"]
         },
         "00:13:A2:00:41:5B:67:F2":
         {
-            "last":"",
             "name":"Coopeumo - 4",
             "params":["Temperatura","Humedad"]
         },
         "00:13:A2:00:41:92:E0:1F":
         {
-            "last":"",
             "name":"Coopeumo - 5",
             "params":["Temperatura","Humedad"]
         }
