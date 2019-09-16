@@ -3,7 +3,7 @@
 #include <XBee.h>
 #include "Adafruit_CCS811.h"
 
-#define pindht 4
+#define pindht 5
 #define DHTTYPE DHT22
 
 Adafruit_CCS811 ccs;
@@ -31,7 +31,6 @@ void floatAchar(float num, char resultado[10])
   dtostrf(num, 5, 2, resultado);
 
 }
-//30 min 1800000 ;
 
 void setup()
 {
@@ -123,5 +122,5 @@ void loop()
 
   strcpy(payload, "");
 
-  delay(10000);
+  delay(60000);
 }
