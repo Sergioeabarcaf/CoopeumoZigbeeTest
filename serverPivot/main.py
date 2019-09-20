@@ -14,7 +14,7 @@ try:
     while (True):
         if (conection.valid()):
             for disp in id:
-                cant = goToFirebase.validDiference30Minutes(disp) * 2
+                cant = 10
                 # Obtener el ultimo dato desde Digi Remote y convertirla en un JSON
                 data = json.loads(drm.getDataDevice(disp,cant))
                 dataReverse = data['list'][::-1]
@@ -27,6 +27,6 @@ try:
                         goToFirebase.send(dataTime,disp,data)
         else:
             log.recivedLog(timeCustom.getCurrenDateAndTimeSTR())
-        time.sleep(60)
+        time.sleep(50)
 except:
     log.recivedExcept(timeCustom.getCurrenDateAndTimeSTR(), sys.exc_info())
