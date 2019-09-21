@@ -24,9 +24,9 @@ try:
                     dataTime = x['timestamp']
                     # Limpiar la data y obtener el dispositivo con sus valores
                     data = drm.obtenerData(dataValue)
-                    csvFile.writeData(disp, dataTime, (dataTime.split("T")[0] + '.csv'), data)
                     if goToFirebase.checkData(dataTime, disp):
                         goToFirebase.send(dataTime,disp,data)
+                        csvFile.writeData(disp, dataTime, (dataTime.split("T")[0] + '.csv'), data)
         else:
             log.recivedLog(timeCustom.getCurrenDateAndTimeSTR())
         time.sleep(50)
