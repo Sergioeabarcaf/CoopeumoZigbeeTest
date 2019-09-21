@@ -1,7 +1,7 @@
 import csv
 import os.path as path
 
-fieldNames = ['MAC', 'dateTime', 'T', 'H', 'CO2']
+fieldNames = ['MAC', 'dateTime', 'T ', 'H ', 'CO2']
 
 def dataToJSON(disp, dataTime, data):
     response = {'MAC': disp, 'dateTime': dataTime}
@@ -9,10 +9,10 @@ def dataToJSON(disp, dataTime, data):
         data.append("CO2: -414")
     for d in data:
         aux = d.split(":")
-        response.update({str(aux[0]) : int(aux[1])})
+        response.update({str(aux[0]) : aux[1]})
     return response
 
-def createFile(start):
+def createFile(nameFile):
     # Crear nombre del archivo
     with open(nameFile, 'a') as csvfile:
         write = csv.DictWriter(csvfile, fieldnames = fieldNames)
