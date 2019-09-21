@@ -7,6 +7,7 @@ import conection
 import timeCustom
 import log
 import sys
+import csvFile
 
 id = ["00:13:A2:00:41:54:B4:F0","00:13:A2:00:41:92:E0:1F","00:13:A2:00:41:9B:43:E4","00:13:A2:00:41:54:B4:EE","00:13:A2:00:41:5B:67:F2"]
 
@@ -23,6 +24,7 @@ try:
                     dataTime = x['timestamp']
                     # Limpiar la data y obtener el dispositivo con sus valores
                     data = drm.obtenerData(dataValue)
+                    csvFile.writeData((dataTime.split("T")[0] + '.csv'), data)
                     if goToFirebase.checkData(dataTime, disp):
                         goToFirebase.send(dataTime,disp,data)
         else:
