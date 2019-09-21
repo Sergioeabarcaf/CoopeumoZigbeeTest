@@ -3,8 +3,8 @@ import os.path as path
 
 fieldNames = ['MAC', 'dateTime', 'T', 'H', 'CO2']
 
-def dataToJSON(data):
-    response = {}
+def dataToJSON(disp, dataTime, data):
+    response = {'MAC': disp, 'dateTime': dataTime}
     if (len(data) == 2):
         data.append("CO2: -414")
     for d in data:
@@ -18,8 +18,8 @@ def createFile(start):
         write = csv.DictWriter(csvfile, fieldnames = fieldNames)
         write.writeheader()
 
-def writeData(nameFile, data):
-    data = dataToJSON(data)
+def writeData(disp, dataTime, nameFile, data):
+    data = dataToJSON(disp, dataTime, data)
     if (path.exists(nameFile) != True ):
         createFile(nameFile)
     with open(nameFile, 'a') as csvfile:
