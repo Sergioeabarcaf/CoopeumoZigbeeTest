@@ -27,7 +27,7 @@ def getDataDevice(id,cantidad):
         return response.status
 
 def getDataInit(id,cantidad,dateStart):
-    link = "/ws/v1/streams/history/00000000-00000000-00409DFF-FF6496C2/xbee.serialIn/["+ id + "]!?size=" + str(cantidad) + "&order=desc&start_time=" + str(dateStart)
+    link = "/ws/v1/streams/history/00000000-00000000-00409DFF-FF6496C2/xbee.serialIn/["+ id + "]!?size=" + str(cantidad) + "&order=desc&end_time=" + str(dateStart)
     auth = base64.encodestring("%s:%s"%(username,password))[:-1]
     webservice = httplib.HTTPSConnection("remotemanager.digi.com")
     webservice.putrequest("GET", link)
