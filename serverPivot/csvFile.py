@@ -14,15 +14,15 @@ def dataToJSON(disp, dataTime, data):
 
 def createFile(nameFile):
     # Crear nombre del archivo
-    with open(nameFile, 'a') as csvfile:
+    with open("./datos/" + nameFile, 'a') as csvfile:
         write = csv.DictWriter(csvfile, fieldnames = fieldNames)
         write.writeheader()
 
 def writeData(disp, dataTime, nameFile, data):
     data = dataToJSON(disp, dataTime, data)
-    if (path.exists(nameFile) != True ):
+    if (path.exists("./datos/" + nameFile) != True ):
         createFile(nameFile)
-    with open(nameFile, 'a') as csvfile:
+    with open("./datos/" + nameFile, 'a') as csvfile:
         write = csv.DictWriter(csvfile, fieldnames = fieldNames)
         write.writerow(data)
     print "escrito con exito"
