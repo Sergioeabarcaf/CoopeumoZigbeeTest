@@ -10,15 +10,13 @@
 FROM ubuntu
 
 # Instalación de componentes necesarios
+RUN apt install software-properties-common
+RUN apt-add-repository ppa:nilarimogard/webupd8
 RUN apt update && apt upgrade -y
-RUN apt install git python python-pip -y
-RUN pip install firebase-admin
+RUN apt install git python python-pip -y firebase-admin grive
 # Clonar repositorio del proyecto
 RUN git clone https://github.com/Sergioeabarcaf/CoopeumoZigbeeTest.git
-# Cambiar a rama sergio
-RUN cd /CoopeumoZigbeeTest && git checkout dev
 
 # Copiar archivos necesarios para la ejecución
 COPY dogKey.json /CoopeumoZigbeeTest/serverPivot
 COPY dogKey.json .
-
