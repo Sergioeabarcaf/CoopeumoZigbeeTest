@@ -40,6 +40,8 @@ try:
                         csvFile.writeData(disp, dataTime, (dataTime.split("T")[0] + '.csv'), data)
                         if goToFirebase.checkData(dataTime, disp):
                             goToFirebase.send(dataTime,disp,data)
+            # actualizar el contenido en carpeta Drive
+            os.system("grive -u -s datos/")
         else:
             log.recivedLog(timeCustom.getCurrenDateAndTimeSTR())
         time.sleep(60)
