@@ -20,30 +20,28 @@ dates = ["2019-09-09T00:00:00.0","2019-09-09T12:00:00.0","2019-09-10T00:00:00.0"
         "2019-09-30T00:00:00.0","2019-09-30T12:00:00.0"]
 
 try:
-    while (True):
-        if (conection.valid()):
-            for disp in id:
-                for date in dates:
-                    cant = 750
-                    # Obtener el ultimo dato desde Digi Remote y convertirla en un JSON
-                    data = json.loads(drm.getDataInit(disp,cant,date))
-                    # Revertir orden de la data
-                    dataReverse = data['list'][::-1]
-                    for x in dataReverse:
-                        # Decodificar mensaje
-                        dataValue = base64.b64decode(x['value'])
-                        #Extraer tiempo del mensaje
-                        dataTime = x['timestamp']
-                        # Limpiar la data y obtener el dispositivo con sus valores
-                        data = drm.obtenerData(dataValue)
-                        # Se guarda el dato en CSV y si el dato es nuevo, se envia a firebase
-                        csvFile.writeData(disp, dataTime, (dataTime.split("T")[0] + '.csv'), data)
-                        if goToFirebase.checkData(dataTime, disp):
-                            goToFirebase.send(dataTime,disp,data)
-            # actualizar el contenido en carpeta Drive
-            os.system("grive -u -s datos/")
-        else:
-            log.recivedLog(timeCustom.getCurrenDateAndTimeSTR())
-        time.sleep(60)
+    if (conection.valid()):
+        for disp in id:
+            for date in dates:
+                cant = 750
+                # Obtener el ultimo dato desde Digi Remote y convertirla en un JSON
+                data = json.loads(drm.getDataInit(disp,cant,date))
+                # Revertir orden de la data
+                dataReverse = data['list'][::-1]
+                for x in dataReverse:
+                    # Decodificar mensaje
+                    dataValue = base64.b64decode(x['value'])
+                    #Extraer tiempo del mensaje
+                    dataTime = x['timestamp']
+                    # Limpiar la data y obtener el dispositivo con sus valores
+                    data = drm.obtenerData(dataValue)
+                    # Se guarda el dato en CSV y si el dato es nuevo, se envia a firebase
+                    csvFile.writeData(disp, dataTime, (dataTime.split("T")[0] + '.csv'), data)
+                    if goToFirebase.checkData(dataTime, disp):
+                        goToFirebase.send(dataTime,disp,data)
+        # actualizar el contenido en carpeta Drive
+        os.system("grive -u -s datos/")
+    else:
+        log.recivedLog(timeCustom.getCurrenDateAndTimeSTR())
 except:
     log.recivedExcept(timeCustom.getCurrenDateAndTimeSTR(), sys.exc_info())
