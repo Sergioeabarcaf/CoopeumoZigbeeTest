@@ -37,9 +37,9 @@ try:
                         # Limpiar la data y obtener el dispositivo con sus valores
                         data = drm.obtenerData(dataValue)
                         # Se guarda el dato en CSV y si el dato es nuevo, se envia a firebase
-                        csvFile.writeData(disp, dataTime, (dataTime.split("T")[0] + '.csv'), data)
                         if goToFirebase.checkData(dataTime, disp):
                             goToFirebase.send(dataTime,disp,data)
+                            csvFile.writeData(disp, dataTime, (dataTime.split("T")[0] + '.csv'), data)
             # actualizar el contenido en carpeta Drive
             os.system("grive -u -s datos/")
             if (cant > 50):
