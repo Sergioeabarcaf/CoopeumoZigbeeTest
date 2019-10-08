@@ -11,8 +11,7 @@ import csvFile
 import os
 
 id = ["00:13:A2:00:41:54:B4:F0","00:13:A2:00:41:92:E0:1F","00:13:A2:00:41:9B:43:E4","00:13:A2:00:41:54:B4:EE","00:13:A2:00:41:5B:67:F2"]
-dates = ["2019-09-30T00:00:00.0","2019-09-30T12:00:00.0","2019-10-01T00:00:00.0","2019-10-01T12:00:00.0",
-         "2019-10-02T00:00:00.0","2019-10-02T12:00:00.0","2019-10-03T00:00:00.0","2019-10-03T12:00:00.0",
+dates = ["2019-10-02T12:00:00.0","2019-10-03T00:00:00.0","2019-10-03T12:00:00.0",
          "2019-10-04T00:00:00.0","2019-10-04T12:00:00.0","2019-10-05T00:00:00.0","2019-10-05T12:00:00.0",
          "2019-10-06T00:00:00.0","2019-10-06T12:00:00.0","2019-10-07T00:00:00.0","2019-10-07T12:00:00.0",
          "2019-10-08T00:00:00.0","2019-10-08T12:00:00.0","2019-10-09T00:00:00.0","2019-10-09T12:00:00.0",
@@ -40,10 +39,12 @@ try:
                         if goToFirebase.checkData(dataTime, disp):
                             goToFirebase.send(dataTime,disp,data)
                             csvFile.writeData(disp, dataTime, (dataTime.split("T")[0] + '.csv'), data)
-            # actualizar el contenido en carpeta Drive
-            os.system("grive -u -s datos/")
-            if (cant > 50):
-                cant -= 50
+                    log.recivedAll(timeCustom.getCurrenDateAndTimeSTR(), "revisado " + disp + " en fecha " + date + " con una cantidad de " + cant)
+                # actualizar el contenido en carpeta Drive
+                os.system("grive -u -s datos/")
+                log.recivedAll(timeCustom.getCurrenDateAndTimeSTR, "Se actualizo GRIVE del dispositivo " + disp)
+                if (cant > 50):
+                    cant -= 50
     else:
         log.recivedLog(timeCustom.getCurrenDateAndTimeSTR())
 except:

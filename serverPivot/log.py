@@ -47,8 +47,15 @@ def recivedExcept(datetime, error):
     f = open("./error.txt", "a")
     f.write("=====================\n")
     f.write(datetime + "  \n")
-    f.write(str(error[0]))
+    f.write(str(error[0]) + "\n")
+    f.write(str(error[1]) + "\n")
     f.write("\n")
-    f.write(str(error[1]))
+    f.close()
+    return True
+
+# Funcion para almacenar cualquier mensaje que se requiera.
+def recivedAll(datetime, message):
+    f = open(path, "a")
+    f.write(datetime + " - " + message + "\n")
     f.close()
     return True
