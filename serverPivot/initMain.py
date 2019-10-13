@@ -39,10 +39,10 @@ try:
                         if goToFirebase.checkData(dataTime, disp):
                             goToFirebase.send(dataTime,disp,data)
                             csvFile.writeData(disp, dataTime, (dataTime.split("T")[0] + '.csv'), data)
-                    log.recivedAll(timeCustom.getCurrenDateAndTimeSTR(), "revisado " + disp + " en fecha " + date + " con una cantidad de " + cant)
+                    log.recivedAll(timeCustom.getCurrenDateAndTimeSTR(), "revisado " + str(disp) + " en fecha " + str(date) + " con una cantidad de " + str(cant))
                     # actualizar el contenido en carpeta Drive
                     os.system("grive -u -s datos/")
-                    log.recivedAll(timeCustom.getCurrenDateAndTimeSTR, "Se actualizo GRIVE del dispositivo " + disp)
+                    log.recivedAll(timeCustom.getCurrenDateAndTimeSTR, "Se actualizo GRIVE del dispositivo " + str(disp))
                 if (cant > 50):
                     cant -= 50
     else:
