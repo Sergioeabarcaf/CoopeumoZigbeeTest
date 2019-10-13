@@ -42,7 +42,7 @@ try:
                     log.recivedAll(timeCustom.getCurrenDateAndTimeSTR(), "revisado " + str(disp) + " en fecha " + str(date) + " con una cantidad de " + str(cant))
                     # actualizar el contenido en carpeta Drive
                     os.system("grive -u -s datos/")
-                    log.recivedAll(timeCustom.getCurrenDateAndTimeSTR, "Se actualizo GRIVE del dispositivo " + str(disp))
+                    log.recivedAll(timeCustom.getCurrenDateAndTimeSTR(), "Se actualizo GRIVE del dispositivo " + str(disp))
                 if (cant > 50):
                     cant -= 50
     else:

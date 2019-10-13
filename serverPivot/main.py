@@ -35,7 +35,7 @@ try:
                         csvFile.writeData(disp, dataTime, (dataTime.split("T")[0] + '.csv'), data)
                 # actualizar el contenido en carpeta Drive
                 os.system("grive -u -s datos/")
-                log.recivedAll(timeCustom.getCurrenDateAndTimeSTR, "Se actualizo GRIVE del dispositivo " + str(disp))
+                log.recivedAll(timeCustom.getCurrenDateAndTimeSTR(), "Se actualizo GRIVE del dispositivo " + str(disp))
         else:
             log.recivedLog(timeCustom.getCurrenDateAndTimeSTR())
         time.sleep(60)
