@@ -12,11 +12,12 @@ import os
 
 id = ["00:13:A2:00:41:54:B4:F0","00:13:A2:00:41:92:E0:1F","00:13:A2:00:41:9B:43:E4","00:13:A2:00:41:54:B4:EE","00:13:A2:00:41:5B:67:F2"]
 
+cant = 5
+
 try:
     while (True):
         if (conection.valid()):
             for disp in id:
-                cant = 5
                 # Obtener el ultimo dato desde Digi Remote y convertirla en un JSON
                 data = json.loads(drm.getDataDevice(disp,cant))
                 # Revertir orden de la data
@@ -32,10 +33,11 @@ try:
                     if goToFirebase.checkData(dataTime, disp):
                         goToFirebase.send(dataTime,disp,data)
                         csvFile.writeData(disp, dataTime, (dataTime.split("T")[0] + '.csv'), data)
-            # actualizar el contenido en carpeta Drive
-            os.system("grive -u -s datos/")
+                # actualizar el contenido en carpeta Drive
+                os.system("grive -u -s datos/")
+                log.recivedAll(timeCustom.getCurrenDateAndTimeSTR, "Se actualizo GRIVE del dispositivo " + disp)
         else:
             log.recivedLog(timeCustom.getCurrenDateAndTimeSTR())
-        time.sleep(50)
+        time.sleep(60)
 except:
     log.recivedExcept(timeCustom.getCurrenDateAndTimeSTR(), sys.exc_info())
